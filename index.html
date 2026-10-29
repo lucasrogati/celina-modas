@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celina Modas | Moda Executiva Feminina</title><meta name="description" content="Conheça a seleção de moda feminina da Celina Modas. Escolha suas peças e consulte seu pedido pelo WhatsApp.">
+<meta name="theme-color" content="#0d6172"><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="css/style.css">
+<script defer src="js/config.js"></script><script defer src="js/products.js"></script><script defer src="js/supabase-config.js"></script><script defer src="js/supabase-api.js"></script><script defer src="js/catalog.js"></script><script defer src="js/bootstrap.js"></script>
+</head><body data-page="index"><a class="skip-link" href="#main">Pular para o conteúdo</a><div class="app"><div id="site-header"></div><main id="main" tabindex="-1">
+<!-- BANNER PRINCIPAL: textos e foto em js/config.js -->
+<section class="hero"><img id="hero-image" alt="Produção de moda feminina da coleção Celina" fetchpriority="high"><div class="hero-shade"></div><div class="hero-content"><p class="eyebrow light" id="hero-eyebrow"></p><h1>Elegância que<br>acompanha você.</h1><p id="hero-description"></p><a class="btn btn-light" href="categoria.html">Conhecer a coleção <span aria-hidden="true">→</span></a></div></section>
+<!-- CATEGORIAS: nomes em js/config.js e fotos obtidas do catálogo -->
+<section class="category-section page-width"><div class="section-heading"><div><p class="eyebrow">Encontre seu estilo</p><h2>Vista a sua melhor versão</h2></div></div><div class="category-grid" id="home-categories"></div></section>
+<!-- VITRINE: produtos em js/products.js -->
+<section class="products-section page-width"><div class="section-heading"><div><p class="eyebrow">Recém-chegados</p><h2>Novidades</h2></div><a class="btn btn-text" href="categoria.html">Ver tudo →</a></div><div class="product-grid" id="home-products"></div></section>
+<!-- SEÇÃO EDITORIAL -->
+<section class="editorial"><div class="editorial-photo wide"><img id="editorial-one" loading="lazy" alt="Look de alfaiataria claro"></div><div class="editorial-copy"><p class="eyebrow">Edição Celina</p><h2>Do trabalho<br>ao encontro</h2><p>Alfaiataria leve para uma agenda em movimento. Descubra combinações que transitam com naturalidade entre seus compromissos.</p><a class="btn btn-outline" href="categoria.html">Conhecer os looks →</a></div><div class="editorial-photo tall"><img id="editorial-two" loading="lazy" alt="Look de moda executiva"></div></section>
+<!-- SOBRE A MARCA -->
+<section class="about page-width" id="sobre"><div class="about-mark" aria-hidden="true">C</div><div><p class="eyebrow">Sobre a Celina</p><h2>Moda que valoriza<br>a mulher que você é.</h2></div><div><p id="about-text"></p><button class="btn btn-text" data-contact>Converse com a Celina →</button></div></section>
+<!-- Antiga newsletter: agora direciona ao atendimento, sem cadastro fictício. -->
+<section class="newsletter"><div><p class="eyebrow light">Entre para o nosso universo</p><h2>Seu próximo look começa aqui.</h2><p>Tire dúvidas sobre peças, tamanhos e novidades diretamente com a nossa equipe.</p></div><button class="btn btn-light" data-contact>Falar pelo WhatsApp →</button></section>
+</main><div id="site-footer"></div></div>
+<dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title"></h2><button type="button" class="icon-btn" data-close-dialog aria-label="Fechar janela">×</button></div><div class="dialog-body" id="dialog-body"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<noscript><p>Ative o JavaScript para consultar produtos e montar sua sacola.</p></noscript></body></html>

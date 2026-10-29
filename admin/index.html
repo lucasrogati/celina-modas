@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Meus produtos | Celina</title>
+    <link rel="icon" href="../assets/favicon.svg">
+    <link rel="stylesheet" href="admin.css">
+    <script defer src="../js/supabase-config.js"></script>
+    <script defer src="../js/supabase-api.js"></script>
+    <script defer src="admin.js"></script>
+    <script defer src="delete-products.js?v=1"></script>
+</head>
+
+<body>
+    <header><a href="../index.html" aria-label="Abrir o catálogo"><img src="../assets/images/logo.png"
+                alt="Celina Moda Executiva"></a>
+        <div><a href="settings.html">Minha loja</a><a href="../index.html" target="_blank" rel="noopener">Ver catálogo ↗</a><button id="logout"
+                hidden>Sair</button></div>
+    </header>
+    <main>
+        <section id="login-panel" class="login" hidden>
+            <h1>Seu catálogo, do seu jeito.</h1>
+            <p>Entre com a conta autorizada para atualizar suas peças.</p>
+            <form id="login-form"><label>E-mail<input type="email" id="login-email" autocomplete="username"
+                        required></label><label>Senha<input type="password" id="login-password"
+                        autocomplete="current-password" required></label><button class="primary"
+                    type="submit">Entrar</button>
+                <p class="hint">Use a senha do painel, não a senha do seu e-mail. Se esqueceu, peça ao responsável pelo
+                    site para iniciar a recuperação no Supabase.</p>
+            </form>
+        </section>
+        <section id="list-panel" hidden>
+            <div class="title-row">
+                <div>
+                    <p class="eyebrow">Área exclusiva</p>
+                    <h1>Meus produtos</h1>
+                </div><button class="primary" id="new-product">+ Adicionar produto</button>
+            </div>
+            <div class="toolbar"><label class="search-label">Buscar peça<input id="search-products" type="search"
+                        placeholder="Nome da peça"></label><label>Situação<select id="status-filter">
+                        <option value="all">Todas</option>
+                        <option value="published">No catálogo</option>
+                        <option value="soldout">Esgotadas</option>
+                        <option value="draft">Rascunhos</option>
+                        <option value="archived">Ocultas</option>
+                    </select></label><button id="reload-products">Atualizar lista</button><button
+                    id="manage-categories">Categorias</button></div>
+            <p id="list-count" class="hint"></p>
+            <div id="product-list" class="product-list"></div>
+        </section>
+        <section id="editor-panel" hidden>
+            <div class="title-row"><button id="back-to-list">← Meus produtos</button>
+                <h1 id="editor-title">Nova peça</h1>
+            </div>
+            <form id="product-form">
+                <fieldset id="product-fields">
+                    <section class="form-card">
+                        <h2>Fotos da peça</h2>
+                        <p class="hint">A primeira foto é a capa. Envie até 10 fotos JPG, PNG ou WebP. As imagens serão
+                            reduzidas antes do envio. Não envie documentos ou imagens privadas: as fotos do catálogo têm
+                            URL pública.</p><label class="upload">+ Escolher fotos<input id="photo-files" type="file"
+                                accept="image/jpeg,image/png,image/webp" multiple></label>
+                        <p id="photo-status" role="status"></p>
+                        <div id="photos" class="photos"></div>
+                    </section>
+                    <section class="form-card">
+                        <h2>Informações</h2><label>Nome da peça<input id="product-name" maxlength="200"
+                                required></label>
+                        <div class="two-columns"><label>Preço (R$)<input id="product-price" type="text"
+                                    inputmode="decimal" placeholder="Ex.: 129,90"
+                                    required></label><label>Categoria<select id="product-category"
+                                    required></select></label></div><label>Descrição — opcional<textarea
+                                id="product-description" maxlength="10000" rows="3"></textarea></label><label>Composição
+                            e cuidados — opcional<textarea id="product-care" maxlength="5000"
+                                rows="2"></textarea></label><label class="inline"><input id="product-new"
+                                type="checkbox"> Destacar como novidade</label>
+                    </section>
+                    <section class="form-card">
+                        <h2>Cores e tamanhos</h2>
+                        <p class="hint">Marque os tamanhos disponíveis para cada cor. Se desmarcar todos, a peça ficará
+                            esgotada. O site não baixa estoque automaticamente ao vender pelo WhatsApp.</p>
+                        <label>Tamanhos desta peça (separados por vírgula)<input id="sizes-input"
+                                value="PP, P, M, G, GG" maxlength="250"></label><button id="apply-sizes"
+                            type="button">Aplicar tamanhos</button>
+                        <div id="colors"></div><button id="add-color" type="button">+ Adicionar cor</button>
+                    </section>
+                    <section class="form-card">
+                        <h2>Exibição no site</h2><label>Situação<select id="product-status">
+                                <option value="published">Mostrar no catálogo</option>
+                                <option value="draft">Guardar como rascunho</option>
+                                <option value="archived">Ocultar do catálogo</option>
+                            </select></label>
+                        <p class="hint">As alterações aparecem para os visitantes ao abrir ou atualizar a página, depois
+                            de salvar com sucesso.</p>
+                    </section>
+                </fieldset>
+                <div class="save-bar"><button type="button" id="cancel-edit">Cancelar</button><button class="primary"
+                        id="save-product" type="submit">Salvar produto</button></div>
+                <p id="save-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+        <p id="initial-status" role="status">Verificando acesso…</p>
+        <div id="notice" role="status" aria-live="polite" hidden></div>
+    </main>
+    <dialog id="categories-dialog" aria-labelledby="categories-title">
+        <div class="title-row">
+            <h2 id="categories-title">Categorias</h2><button id="close-categories" aria-label="Fechar">×</button>
+        </div>
+        <p class="hint">Desativar uma categoria também oculta suas peças no site, sem apagá-las.</p>
+        <div id="categories-list"></div>
+        <form id="category-form"><label>Nova categoria<input id="category-name" maxlength="100" required></label><button
+                class="primary">Adicionar categoria</button></form>
+    </dialog>
+    <noscript>Ative o JavaScript para usar o painel.</noscript>
+</body>
+
+</html>
